@@ -1,0 +1,25 @@
+name: eid_nfc_example
+description: >-
+  Reads a passport or an identity card through the phone's NFC, with every
+  command logged, to try eid_nfc and eid_icao on real documents.
+publish_to: none
+version: 0.1.0
+
+environment:
+  sdk: ^3.5.0
+  flutter: '>=3.24.0'
+
+dependencies:
+  eid_icao: ^0.1.0
+  eid_nfc:
+    path: ../
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  lint: ^2.8.0
+
+flutter:
+  uses-material-design: true

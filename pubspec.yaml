@@ -1,0 +1,42 @@
+name: eid_nfc
+description: >-
+  Reads electronic identity documents through the NFC of an Android phone or
+  an iPhone: passports and identity cards. The eid transport for the
+  flutter_nfc_kit plugin.
+version: 0.1.0
+homepage: https://packages.comapps.be/#eid_nfc
+repository: https://github.com/raphrmx/eid_nfc
+issue_tracker: https://github.com/raphrmx/eid_nfc/issues
+funding:
+  - https://www.paypal.com/donate/?hosted_button_id=ZN6D382YQAV5N
+topics:
+  - eid
+  - nfc
+  - smartcard
+  - passport
+  - identity
+screenshots:
+  - description: Which packages to add for a Belgian card or a passport, the key each needs and what the read gives back.
+    path: screenshots/situations.png
+
+# The plugin also runs in Chrome on Android, whose Web NFC reads NDEF tags
+# alone and no identity document: pub.dev lists these platforms only.
+platforms:
+  android:
+  ios:
+
+environment:
+  sdk: ^3.5.0
+  flutter: '>=3.24.0'
+
+dependencies:
+  eid: ^0.1.1
+  flutter:
+    sdk: flutter
+  flutter_nfc_kit: ^3.6.2
+
+dev_dependencies:
+  eid_icao: ^0.1.0
+  flutter_test:
+    sdk: flutter
+  lint: ^2.8.0
