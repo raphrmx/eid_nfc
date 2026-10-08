@@ -10,14 +10,21 @@ environment:
   flutter: '>=3.24.0'
 
 dependencies:
-  eid_icao: ^0.1.0
+  # The MRZ scanner came with 0.1.2: from GitHub until it is on pub.dev.
+  eid_icao:
+    git:
+      url: https://github.com/raphrmx/eid_icao.git
+      ref: main
   eid_nfc:
     path: ../
   flutter:
     sdk: flutter
-  # The camera's frames, for eid_icao's MRZ scanner.
+  # The camera's frames, for eid_icao's MRZ scanner: onFrame came with
+  # 2.3.0, from GitHub until it is on pub.dev.
   universal_barcode_scanner:
-    path: ../../../universal_barcode_scanner
+    git:
+      url: https://github.com/raphrmx/universal_barcode_scanner.git
+      ref: main
 
 dev_dependencies:
   flutter_test:
