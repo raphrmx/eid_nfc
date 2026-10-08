@@ -216,15 +216,32 @@ class ReadSession extends ChangeNotifier {
 
   // The simulated document's key, ready to read.
   void _fillKey(SimulatedIcaoChip chip) {
-    String yymmdd(int year, int month, int day) =>
-        [year % 100, month, day].map((v) => '$v'.padLeft(2, '0')).join();
     can.text = chip.can;
     number.text = chip.documentNumber;
     final born = chip.birthDate;
-    birth.text = yymmdd(born.year, born.month!, born.day!);
+    birth.text = _yymmdd(born.year, born.month!, born.day!);
     final until = chip.expiryDate;
-    expiry.text = yymmdd(until.year, until.month, until.day);
+    expiry.text = _yymmdd(until.year, until.month, until.day);
   }
+
+  /// Fills the MRZ fields with [key], as the camera read it.
+  void fillFromMrz(IcaoMrzKey key) {
+    if (reading) return;
+    mode = KeyMode.mrz;
+    number.text = key.documentNumber;
+    final born = key.birthDate;
+    // An unknown month or day stays blank, to be typed.
+    birth.text = born.month == null || born.day == null
+        ? ''
+        : _yymmdd(born.year, born.month!, born.day!);
+    final until = key.expiryDate;
+    expiry.text = _yymmdd(until.year, until.month, until.day);
+    _clear();
+    notifyListeners();
+  }
+
+  static String _yymmdd(int year, int month, int day) =>
+      [year % 100, month, day].map((v) => '$v'.padLeft(2, '0')).join();
 
   /// The key typed, or null when a field is wrong.
   IcaoAccessKey? key() {

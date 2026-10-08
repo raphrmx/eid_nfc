@@ -66,6 +66,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Reads the machine readable zone of your passport or identity card, for the key of its chip.</string>
 	<key>NFCReaderUsageDescription</key>
 	<string>Reads the chip of your passport or identity card.</string>
 	<key>com.apple.developer.nfc.readersession.iso7816.select-identifiers</key>

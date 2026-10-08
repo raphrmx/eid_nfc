@@ -15,6 +15,9 @@ dependencies:
     path: ../
   flutter:
     sdk: flutter
+  # The camera's frames, for eid_icao's MRZ scanner.
+  universal_barcode_scanner:
+    path: ../../../universal_barcode_scanner
 
 dev_dependencies:
   flutter_test:

@@ -1,8 +1,10 @@
+import 'package:eid_icao/eid_icao.dart' show IcaoMrzKey;
 import 'package:eid_icao/testing.dart';
 import 'package:eid_nfc/eid_nfc.dart';
 import 'package:eid_nfc_example/src/palette.dart';
 import 'package:eid_nfc_example/src/session.dart';
 import 'package:eid_nfc_example/src/widgets/id_card.dart';
+import 'package:eid_nfc_example/src/widgets/mrz_scan_page.dart';
 import 'package:eid_nfc_example/src/widgets/nfc_mark.dart';
 import 'package:eid_nfc_example/src/widgets/phone_stage.dart';
 import 'package:eid_nfc_example/src/widgets/result_panels.dart';
@@ -146,6 +148,14 @@ class _KeyFields extends StatelessWidget {
             enabled: enabled,
           )
         else ...[
+          if (session.source == DocumentSource.nfc) ...[
+            OutlinedButton.icon(
+              onPressed: enabled ? () => _scan(context) : null,
+              icon: const Icon(Icons.document_scanner_outlined),
+              label: const Text('Scan the MRZ with the camera'),
+            ),
+            const SizedBox(height: 14),
+          ],
           _Field(
             session.number,
             'Document number, in full',
@@ -177,6 +187,13 @@ class _KeyFields extends StatelessWidget {
         ],
       ],
     );
+  }
+
+  // The fields filled from the camera, once two frames agree.
+  Future<void> _scan(BuildContext context) async {
+    final result = await MrzScanPage.open(context);
+    if (result == null) return;
+    session.fillFromMrz(result.accessKey as IcaoMrzKey);
   }
 }
 
